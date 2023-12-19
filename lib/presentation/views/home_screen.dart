@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:resume_builder/logic/blocs/bloc/resume_bloc.dart';
-import 'package:resume_builder/models/personal_details_model.dart';
-import 'package:resume_builder/presentation/widgets/custom_appbar.dart';
-import 'package:resume_builder/presentation/widgets/custom_button.dart';
-import 'package:resume_builder/presentation/widgets/custom_textfield.dart';
-import 'package:resume_builder/presentation/widgets/white_custom_button.dart';
+import 'package:resume_builder/data/models/personal_details_model.dart';
+import 'package:resume_builder/presentation/widgets/common/custom_appbar.dart';
+import 'package:resume_builder/presentation/widgets/common/custom_button.dart';
+import 'package:resume_builder/presentation/widgets/common/custom_textfield.dart';
+import 'package:resume_builder/presentation/widgets/common/white_custom_button.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

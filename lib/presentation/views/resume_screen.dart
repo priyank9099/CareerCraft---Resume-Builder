@@ -68,7 +68,7 @@ class ResumeScreen extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  context.goNamed('step-two-screen');
+                                  context.pushReplacement('step-two-screen');
                                 },
                                 child: Icon(
                                   Icons.edit_square,
@@ -107,7 +107,7 @@ class ResumeScreen extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  context.goNamed('step-three-screen');
+                                  context.pushReplacement('step-three-screen');
                                 },
                                 child: Icon(
                                   Icons.edit_square,
@@ -146,7 +146,7 @@ class ResumeScreen extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  context.goNamed('step-four-screen');
+                                  context.pushReplacement('step-four-screen');
                                 },
                                 child: Icon(
                                   Icons.edit_square,

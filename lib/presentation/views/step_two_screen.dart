@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:resume_builder/core/utils.dart';
 import 'package:resume_builder/logic/blocs/bloc/resume_bloc.dart';
-import 'package:resume_builder/models/education_model.dart';
+import 'package:resume_builder/data/models/education_model.dart';
 import 'package:resume_builder/presentation/views/home_screen.dart';
 import 'package:resume_builder/presentation/widgets/common/custom_appbar.dart';
 import 'package:resume_builder/presentation/widgets/common/custom_button.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resume_builder/models/project.dart';
+import 'package:resume_builder/data/models/project.dart';
 
 class ProjectWidget extends StatelessWidget {
   const ProjectWidget({

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resume_builder/models/experience.dart';
+import 'package:resume_builder/data/models/experience.dart';
 
 class ExperienceWidget extends StatelessWidget {
   const ExperienceWidget({

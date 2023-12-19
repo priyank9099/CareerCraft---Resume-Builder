@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:resume_builder/models/education_model.dart';
-import 'package:resume_builder/models/experience.dart';
-import 'package:resume_builder/models/personal_details_model.dart';
-import 'package:resume_builder/models/project.dart';
+import 'package:resume_builder/data/models/education_model.dart';
+import 'package:resume_builder/data/models/experience.dart';
+import 'package:resume_builder/data/models/personal_details_model.dart';
+import 'package:resume_builder/data/models/project.dart';
 
 part 'resume_event.dart';
 part 'resume_state.dart';
@@ -28,7 +28,6 @@ class ResumeBloc extends Bloc<ResumeEvent, ResumeState> {
         educationList: educationList,
         experienceList: experienceList,
         projectList: projectList));
-    printbloc();
   }
 
   void addEducationHandler(event, emit) {
@@ -38,7 +37,6 @@ class ResumeBloc extends Bloc<ResumeEvent, ResumeState> {
         educationList: educationList,
         experienceList: experienceList,
         projectList: projectList));
-    printbloc();
   }
 
   void addExperienceHandler(event, emit) {
@@ -48,7 +46,6 @@ class ResumeBloc extends Bloc<ResumeEvent, ResumeState> {
         educationList: educationList,
         experienceList: experienceList,
         projectList: projectList));
-    printbloc();
   }
 
   void addProjectHandler(event, emit) {
@@ -58,13 +55,5 @@ class ResumeBloc extends Bloc<ResumeEvent, ResumeState> {
         educationList: educationList,
         experienceList: experienceList,
         projectList: projectList));
-    printbloc();
-  }
-
-  void printbloc() {
-    print(personalDetails);
-    print(educationList.length);
-    print(experienceList.length);
-    print(projectList.length);
   }
 }

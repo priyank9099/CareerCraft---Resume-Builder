@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:resume_builder/models/education_model.dart';
+import 'package:resume_builder/data/models/education_model.dart';
 
 class EducationWidget extends StatelessWidget {
   const EducationWidget({
