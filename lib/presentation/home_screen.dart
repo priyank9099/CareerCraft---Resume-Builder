@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:resume_builder/logic/blocs/bloc/resume_bloc.dart';
+import 'package:resume_builder/models/personal_details_model.dart';
 import 'package:resume_builder/presentation/widgets/custom_appbar.dart';
 import 'package:resume_builder/presentation/widgets/custom_button.dart';
 import 'package:resume_builder/presentation/widgets/custom_textfield.dart';
@@ -13,6 +16,9 @@ class HomeScreen extends StatelessWidget {
     final TextEditingController nameController = TextEditingController();
     final TextEditingController emailController = TextEditingController();
     final TextEditingController phoneController = TextEditingController();
+
+    final _key = GlobalKey<FormState>();
+
     return Scaffold(
       appBar: CustomAppBar.customAppBar(),
       body: SingleChildScrollView(
@@ -44,18 +50,24 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  CustomTextFormWidget(
-                      hintText: 'John Doe',
-                      textEditingController: nameController,
-                      title: 'Full name'),
-                  CustomTextFormWidget(
-                      hintText: 'johndoe@email.com',
-                      textEditingController: emailController,
-                      title: 'Email address'),
-                  CustomTextFormWidget(
-                      hintText: '1234567896',
-                      textEditingController: phoneController,
-                      title: 'Contact number'),
+                  Form(
+                      key: _key,
+                      child: Column(
+                        children: [
+                          CustomTextFormWidget(
+                              hintText: 'John Doe',
+                              textEditingController: nameController,
+                              title: 'Full name'),
+                          CustomTextFormWidget(
+                              hintText: 'johndoe@email.com',
+                              textEditingController: emailController,
+                              title: 'Email address'),
+                          CustomTextFormWidget(
+                              hintText: '1234567896',
+                              textEditingController: phoneController,
+                              title: 'Contact number'),
+                        ],
+                      )),
                   const SizedBox(height: 16),
                   Row(
                     children: [
@@ -71,7 +83,17 @@ class HomeScreen extends StatelessWidget {
                             buttonTitle: 'Next',
                             icon: Icons.arrow_circle_right_outlined,
                             onPressed: () {
-                              context.pushNamed('step-two-screen');
+                              if (_key.currentState!.validate()) {
+                                PersonalDetails personal = PersonalDetails(
+                                    fullName: nameController.text,
+                                    email: emailController.text,
+                                    contact: phoneController.text);
+
+                                context
+                                    .read<ResumeBloc>()
+                                    .add(AddPersonal(personal: personal));
+                                context.pushNamed('step-two-screen');
+                              }
                             }),
                       ),
                     ],

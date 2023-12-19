@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:resume_builder/logic/blocs/bloc/resume_bloc.dart';
+import 'package:resume_builder/models/project.dart';
 import 'package:resume_builder/presentation/home_screen.dart';
 import 'package:resume_builder/presentation/widgets/custom_appbar.dart';
 import 'package:resume_builder/presentation/widgets/custom_button.dart';
@@ -13,6 +16,25 @@ class StepFourScreen extends StatelessWidget {
     final TextEditingController descriptionController = TextEditingController();
     final TextEditingController fromController = TextEditingController();
     final TextEditingController tillController = TextEditingController();
+    final _key = GlobalKey<FormState>();
+
+    void addProject() {
+      if (_key.currentState!.validate()) {
+        final project = Project(
+            title: titleController.text,
+            description: descriptionController.text,
+            from: fromController.text,
+            till: tillController.text);
+
+        context.read<ResumeBloc>().add(AddProject(project: project));
+
+        titleController.clear();
+        descriptionController.clear();
+        fromController.clear();
+        tillController.clear();
+      }
+    }
+
     return Scaffold(
       appBar: CustomAppBar.customAppBar(),
       body: SingleChildScrollView(
@@ -38,23 +60,30 @@ class StepFourScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            CustomTextFormWidget(
-                hintText: 'E-Commerce Application',
-                textEditingController: titleController,
-                title: 'Title'),
-            CustomTextFormWidget(
-                hintText: 'Description',
-                textEditingController: descriptionController,
-                maxLines: 4,
-                title: 'Description'),
-            CustomTextFormWidget(
-                hintText: 'July 2023',
-                textEditingController: fromController,
-                title: 'From'),
-            CustomTextFormWidget(
-                hintText: 'Aug 2023',
-                textEditingController: tillController,
-                title: 'Till'),
+            Form(
+              key: _key,
+              child: Column(
+                children: [
+                  CustomTextFormWidget(
+                      hintText: 'E-Commerce Application',
+                      textEditingController: titleController,
+                      title: 'Title'),
+                  CustomTextFormWidget(
+                      hintText: 'Description',
+                      textEditingController: descriptionController,
+                      maxLines: 4,
+                      title: 'Description'),
+                  CustomTextFormWidget(
+                      hintText: 'July 2023',
+                      textEditingController: fromController,
+                      title: 'From'),
+                  CustomTextFormWidget(
+                      hintText: 'Aug 2023',
+                      textEditingController: tillController,
+                      title: 'Till'),
+                ],
+              ),
+            ),
             const SizedBox(height: 10),
             SizedBox(
               height: 50,
@@ -62,7 +91,9 @@ class StepFourScreen extends StatelessWidget {
               child: CustomButton(
                   buttonTitle: 'Add to resume',
                   icon: Icons.publish_rounded,
-                  onPressed: () {}),
+                  onPressed: () {
+                    addProject();
+                  }),
             ),
             const SizedBox(height: 16),
             Row(
@@ -80,7 +111,11 @@ class StepFourScreen extends StatelessWidget {
                   child: CustomButton(
                       buttonTitle: 'Next',
                       icon: Icons.arrow_circle_right_outlined,
-                      onPressed: () {}),
+                      onPressed: () {
+                        if (titleController.text.isNotEmpty) {
+                          addProject();
+                        }
+                      }),
                 ),
               ],
             )

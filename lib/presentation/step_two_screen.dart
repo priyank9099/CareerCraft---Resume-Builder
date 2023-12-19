@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:resume_builder/core/utils.dart';
+import 'package:resume_builder/logic/blocs/bloc/resume_bloc.dart';
+import 'package:resume_builder/models/education_model.dart';
 import 'package:resume_builder/presentation/home_screen.dart';
 import 'package:resume_builder/presentation/widgets/custom_appbar.dart';
 import 'package:resume_builder/presentation/widgets/custom_button.dart';
@@ -16,6 +20,27 @@ class StepTwoScreen extends StatelessWidget {
     final TextEditingController branchController = TextEditingController();
     final TextEditingController fromController = TextEditingController();
     final TextEditingController passingYearController = TextEditingController();
+    // ignore: no_leading_underscores_for_local_identifiers
+    final _key = GlobalKey<FormState>();
+
+    void addEducation() {
+      if (_key.currentState!.validate()) {
+        final education = Education(
+            college: collegeController.text,
+            branch: branchController.text,
+            from: fromController.text,
+            passingYear: passingYearController.text);
+
+        context.read<ResumeBloc>().add(AddEducation(education: education));
+
+        collegeController.clear();
+        branchController.clear();
+        fromController.clear();
+        passingYearController.clear();
+        showSnackBar(context, 'Added!');
+      }
+    }
+
     return Scaffold(
       appBar: CustomAppBar.customAppBar(),
       body: SingleChildScrollView(
@@ -44,22 +69,29 @@ class StepTwoScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  CustomTextFormWidget(
-                      hintText: 'State University',
-                      textEditingController: collegeController,
-                      title: 'College/University Name'),
-                  CustomTextFormWidget(
-                      hintText: 'Computer Science',
-                      textEditingController: branchController,
-                      title: 'Branch'),
-                  CustomTextFormWidget(
-                      hintText: 'July 2019',
-                      textEditingController: fromController,
-                      title: 'From'),
-                  CustomTextFormWidget(
-                      hintText: 'Aug 2023',
-                      textEditingController: passingYearController,
-                      title: 'Passing year'),
+                  Form(
+                    key: _key,
+                    child: Column(
+                      children: [
+                        CustomTextFormWidget(
+                            hintText: 'State University',
+                            textEditingController: collegeController,
+                            title: 'College/University Name'),
+                        CustomTextFormWidget(
+                            hintText: 'Computer Science',
+                            textEditingController: branchController,
+                            title: 'Branch'),
+                        CustomTextFormWidget(
+                            hintText: 'July 2019',
+                            textEditingController: fromController,
+                            title: 'From'),
+                        CustomTextFormWidget(
+                            hintText: 'Aug 2023',
+                            textEditingController: passingYearController,
+                            title: 'Passing year'),
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: 10),
                   SizedBox(
                     height: 50,
@@ -67,7 +99,9 @@ class StepTwoScreen extends StatelessWidget {
                     child: CustomButton(
                         buttonTitle: 'Add to resume',
                         icon: Icons.publish_rounded,
-                        onPressed: () {}),
+                        onPressed: () {
+                          addEducation();
+                        }),
                   ),
                   const SizedBox(height: 16),
                   Row(
@@ -87,6 +121,9 @@ class StepTwoScreen extends StatelessWidget {
                             icon: Icons.arrow_circle_right_outlined,
                             onPressed: () {
                               context.pushNamed('step-three-screen');
+                              if (collegeController.text.isNotEmpty) {
+                                addEducation();
+                              }
                             }),
                       ),
                     ],

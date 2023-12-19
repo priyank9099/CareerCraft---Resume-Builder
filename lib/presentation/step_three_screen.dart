@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:resume_builder/logic/blocs/bloc/resume_bloc.dart';
+import 'package:resume_builder/models/experience.dart';
 import 'package:resume_builder/presentation/home_screen.dart';
 import 'package:resume_builder/presentation/widgets/custom_appbar.dart';
 import 'package:resume_builder/presentation/widgets/custom_button.dart';
@@ -14,6 +17,26 @@ class StepThreeScreen extends StatelessWidget {
     final TextEditingController positionController = TextEditingController();
     final TextEditingController durationController = TextEditingController();
     final TextEditingController descriptionController = TextEditingController();
+    // ignore: no_leading_underscores_for_local_identifiers
+    final _key = GlobalKey<FormState>();
+
+    void addExperience() {
+      if (_key.currentState!.validate()) {
+        final experience = Experience(
+            companyName: companyNameController.text,
+            position: positionController.text,
+            duration: durationController.text,
+            description: descriptionController.text);
+
+        context.read<ResumeBloc>().add(AddExperience(experience: experience));
+
+        companyNameController.clear();
+        positionController.clear();
+        durationController.clear();
+        descriptionController.clear();
+      }
+    }
+
     return Scaffold(
       appBar: CustomAppBar.customAppBar(),
       body: SingleChildScrollView(
@@ -39,23 +62,30 @@ class StepThreeScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 12),
-              CustomTextFormWidget(
-                  hintText: 'XYZ Innovations',
-                  textEditingController: companyNameController,
-                  title: 'Company Name'),
-              CustomTextFormWidget(
-                  hintText: 'Software Engineer',
-                  textEditingController: positionController,
-                  title: 'Position'),
-              CustomTextFormWidget(
-                  hintText: '1 Year',
-                  textEditingController: durationController,
-                  title: 'Duration'),
-              CustomTextFormWidget(
-                  hintText: 'I worked on...',
-                  textEditingController: descriptionController,
-                  maxLines: 4,
-                  title: 'Description'),
+              Form(
+                key: _key,
+                child: Column(
+                  children: [
+                    CustomTextFormWidget(
+                        hintText: 'XYZ Innovations',
+                        textEditingController: companyNameController,
+                        title: 'Company Name'),
+                    CustomTextFormWidget(
+                        hintText: 'Software Engineer',
+                        textEditingController: positionController,
+                        title: 'Position'),
+                    CustomTextFormWidget(
+                        hintText: '1 Year',
+                        textEditingController: durationController,
+                        title: 'Duration'),
+                    CustomTextFormWidget(
+                        hintText: 'I worked on...',
+                        textEditingController: descriptionController,
+                        maxLines: 4,
+                        title: 'Description'),
+                  ],
+                ),
+              ),
               const SizedBox(height: 10),
               SizedBox(
                 height: 50,
@@ -63,7 +93,9 @@ class StepThreeScreen extends StatelessWidget {
                 child: CustomButton(
                     buttonTitle: 'Add to resume',
                     icon: Icons.publish_rounded,
-                    onPressed: () {}),
+                    onPressed: () {
+                      addExperience();
+                    }),
               ),
               const SizedBox(height: 16),
               Row(
@@ -82,6 +114,10 @@ class StepThreeScreen extends StatelessWidget {
                         buttonTitle: 'Next',
                         icon: Icons.arrow_circle_right_outlined,
                         onPressed: () {
+                          if (companyNameController.text.isNotEmpty) {
+                            addExperience();
+                          }
+
                           context.pushNamed('step-four-screen');
                         }),
                   ),
