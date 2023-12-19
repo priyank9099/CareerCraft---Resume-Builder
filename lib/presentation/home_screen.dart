@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:resume_builder/presentation/widgets/custom_appbar.dart';
 import 'package:resume_builder/presentation/widgets/custom_button.dart';
 import 'package:resume_builder/presentation/widgets/custom_textfield.dart';
 import 'package:resume_builder/presentation/widgets/white_custom_button.dart';
@@ -10,49 +11,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController nameController = TextEditingController();
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(140),
-        child: Column(
-          children: [
-            AppBar(
-              backgroundColor: const Color(0xff00AE84),
-              title: const Text('CareerCraft'),
-              centerTitle: true,
-              titleTextStyle: const TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            Container(
-                color: const Color(0xff00AE84),
-                height: 80,
-                child: const Center(
-                  child: Column(
-                    children: [
-                      SizedBox(height: 5),
-                      Text(
-                        'BUILD YOUR RESUME',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
-                      ),
-                      SizedBox(height: 2),
-                      Text(
-                        'Create a resume in just 5 minutes',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
-                            color: Colors.white),
-                      ),
-                    ],
-                  ),
-                )),
-          ],
-        ),
-      ),
+      appBar: CustomAppBar.customAppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,41 +23,37 @@ class HomeScreen extends StatelessWidget {
                 // crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.max,
                 children: [
-                  Column(
-                    children: [
-                      const Text(
-                        'STEP 1',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const Text(
-                        'Personal',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xffFBB53B),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      CustomTextFormWidget(
-                          hintText: 'John Doe',
-                          textEditingController: nameController,
-                          title: 'Full name'),
-                      CustomTextFormWidget(
-                          hintText: 'johndoe@email.com',
-                          textEditingController: nameController,
-                          title: 'Email address'),
-                      CustomTextFormWidget(
-                          hintText: '1234567896',
-                          textEditingController: nameController,
-                          title: 'Contact number'),
-                      const SizedBox(height: 16),
-                    ],
+                  const Text(
+                    'STEP 1',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
+                  const Text(
+                    'Personal',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xffFBB53B),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  CustomTextFormWidget(
+                      hintText: 'John Doe',
+                      textEditingController: nameController,
+                      title: 'Full name'),
+                  CustomTextFormWidget(
+                      hintText: 'johndoe@email.com',
+                      textEditingController: nameController,
+                      title: 'Email address'),
+                  CustomTextFormWidget(
+                      hintText: '1234567896',
+                      textEditingController: nameController,
+                      title: 'Contact number'),
+                  const SizedBox(height: 16),
                   Row(
                     children: [
                       Expanded(
