@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:resume_builder/presentation/home_screen.dart';
 import 'package:resume_builder/presentation/widgets/custom_appbar.dart';
 import 'package:resume_builder/presentation/widgets/custom_button.dart';
@@ -11,7 +12,10 @@ class StepTwoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
+    final TextEditingController collegeController = TextEditingController();
+    final TextEditingController branchController = TextEditingController();
+    final TextEditingController fromController = TextEditingController();
+    final TextEditingController passingYearController = TextEditingController();
     return Scaffold(
       appBar: CustomAppBar.customAppBar(),
       body: SingleChildScrollView(
@@ -42,20 +46,29 @@ class StepTwoScreen extends StatelessWidget {
                   const SizedBox(height: 12),
                   CustomTextFormWidget(
                       hintText: 'State University',
-                      textEditingController: nameController,
+                      textEditingController: collegeController,
                       title: 'College/University Name'),
                   CustomTextFormWidget(
                       hintText: 'Computer Science',
-                      textEditingController: nameController,
+                      textEditingController: branchController,
                       title: 'Branch'),
                   CustomTextFormWidget(
                       hintText: 'July 2019',
-                      textEditingController: nameController,
+                      textEditingController: fromController,
                       title: 'From'),
                   CustomTextFormWidget(
                       hintText: 'Aug 2023',
-                      textEditingController: nameController,
+                      textEditingController: passingYearController,
                       title: 'Passing year'),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    height: 50,
+                    width: 200,
+                    child: CustomButton(
+                        buttonTitle: 'Add to resume',
+                        icon: Icons.publish_rounded,
+                        onPressed: () {}),
+                  ),
                   const SizedBox(height: 16),
                   Row(
                     children: [
@@ -63,14 +76,18 @@ class StepTwoScreen extends StatelessWidget {
                         child: WhiteCustomButton(
                             buttonTitle: 'Back',
                             icon: Icons.arrow_circle_left_outlined,
-                            onPressed: () {}),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            }),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
                         child: CustomButton(
                             buttonTitle: 'Next',
                             icon: Icons.arrow_circle_right_outlined,
-                            onPressed: () {}),
+                            onPressed: () {
+                              context.pushNamed('step-three-screen');
+                            }),
                       ),
                     ],
                   )

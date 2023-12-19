@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:resume_builder/presentation/home_screen.dart';
 import 'package:resume_builder/presentation/widgets/custom_appbar.dart';
 import 'package:resume_builder/presentation/widgets/custom_button.dart';
@@ -9,7 +10,10 @@ class StepThreeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
+    final TextEditingController companyNameController = TextEditingController();
+    final TextEditingController positionController = TextEditingController();
+    final TextEditingController durationController = TextEditingController();
+    final TextEditingController descriptionController = TextEditingController();
     return Scaffold(
       appBar: CustomAppBar.customAppBar(),
       body: SingleChildScrollView(
@@ -37,21 +41,30 @@ class StepThreeScreen extends StatelessWidget {
               const SizedBox(height: 12),
               CustomTextFormWidget(
                   hintText: 'XYZ Innovations',
-                  textEditingController: nameController,
+                  textEditingController: companyNameController,
                   title: 'Company Name'),
               CustomTextFormWidget(
                   hintText: 'Software Engineer',
-                  textEditingController: nameController,
+                  textEditingController: positionController,
                   title: 'Position'),
               CustomTextFormWidget(
                   hintText: '1 Year',
-                  textEditingController: nameController,
+                  textEditingController: durationController,
                   title: 'Duration'),
               CustomTextFormWidget(
                   hintText: 'I worked on...',
-                  textEditingController: nameController,
+                  textEditingController: descriptionController,
                   maxLines: 4,
                   title: 'Description'),
+              const SizedBox(height: 10),
+              SizedBox(
+                height: 50,
+                width: 200,
+                child: CustomButton(
+                    buttonTitle: 'Add to resume',
+                    icon: Icons.publish_rounded,
+                    onPressed: () {}),
+              ),
               const SizedBox(height: 16),
               Row(
                 children: [
@@ -59,14 +72,18 @@ class StepThreeScreen extends StatelessWidget {
                     child: WhiteCustomButton(
                         buttonTitle: 'Back',
                         icon: Icons.arrow_circle_left_outlined,
-                        onPressed: () {}),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        }),
                   ),
                   const SizedBox(width: 16),
                   Expanded(
                     child: CustomButton(
                         buttonTitle: 'Next',
                         icon: Icons.arrow_circle_right_outlined,
-                        onPressed: () {}),
+                        onPressed: () {
+                          context.pushNamed('step-four-screen');
+                        }),
                   ),
                 ],
               )
