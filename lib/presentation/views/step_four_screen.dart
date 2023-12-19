@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:resume_builder/logic/blocs/bloc/resume_bloc.dart';
 import 'package:resume_builder/models/project.dart';
-import 'package:resume_builder/presentation/home_screen.dart';
-import 'package:resume_builder/presentation/widgets/custom_appbar.dart';
-import 'package:resume_builder/presentation/widgets/custom_button.dart';
-import 'package:resume_builder/presentation/widgets/white_custom_button.dart';
+import 'package:resume_builder/presentation/views/home_screen.dart';
+import 'package:resume_builder/presentation/widgets/common/custom_appbar.dart';
+import 'package:resume_builder/presentation/widgets/common/custom_button.dart';
+import 'package:resume_builder/presentation/widgets/common/white_custom_button.dart';
 
 class StepFourScreen extends StatelessWidget {
   const StepFourScreen({super.key});
@@ -27,6 +28,8 @@ class StepFourScreen extends StatelessWidget {
             till: tillController.text);
 
         context.read<ResumeBloc>().add(AddProject(project: project));
+
+        context.pushNamed('resume-screen');
 
         titleController.clear();
         descriptionController.clear();
@@ -115,6 +118,8 @@ class StepFourScreen extends StatelessWidget {
                         if (titleController.text.isNotEmpty) {
                           addProject();
                         }
+
+                        context.pushNamed('resume-screen');
                       }),
                 ),
               ],

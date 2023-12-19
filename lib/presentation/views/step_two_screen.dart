@@ -4,10 +4,10 @@ import 'package:go_router/go_router.dart';
 import 'package:resume_builder/core/utils.dart';
 import 'package:resume_builder/logic/blocs/bloc/resume_bloc.dart';
 import 'package:resume_builder/models/education_model.dart';
-import 'package:resume_builder/presentation/home_screen.dart';
-import 'package:resume_builder/presentation/widgets/custom_appbar.dart';
-import 'package:resume_builder/presentation/widgets/custom_button.dart';
-import 'package:resume_builder/presentation/widgets/white_custom_button.dart';
+import 'package:resume_builder/presentation/views/home_screen.dart';
+import 'package:resume_builder/presentation/widgets/common/custom_appbar.dart';
+import 'package:resume_builder/presentation/widgets/common/custom_button.dart';
+import 'package:resume_builder/presentation/widgets/common/white_custom_button.dart';
 
 class StepTwoScreen extends StatelessWidget {
   const StepTwoScreen({

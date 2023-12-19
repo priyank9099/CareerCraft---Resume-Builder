@@ -11,9 +11,7 @@ class CustomAppBar {
             title: const Text('CareerCraft'),
             centerTitle: true,
             titleTextStyle: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w500,
-            ),
+                fontSize: 22, fontWeight: FontWeight.w500, color: Colors.white),
           ),
           Container(
               color: const Color(0xff00AE84),

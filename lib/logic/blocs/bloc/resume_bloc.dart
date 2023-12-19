@@ -11,7 +11,7 @@ part 'resume_state.dart';
 late PersonalDetails personalDetails;
 List<Education> educationList = [];
 List<Experience> experienceList = [];
-List<Project> projectsList = [];
+List<Project> projectList = [];
 
 class ResumeBloc extends Bloc<ResumeEvent, ResumeState> {
   ResumeBloc() : super(ResumeInitialS()) {
@@ -23,21 +23,41 @@ class ResumeBloc extends Bloc<ResumeEvent, ResumeState> {
 
   void addPersonalHandler(event, emit) {
     personalDetails = event.personal;
+    emit(ResumeSuccessS(
+        personalDetails: personalDetails,
+        educationList: educationList,
+        experienceList: experienceList,
+        projectList: projectList));
     printbloc();
   }
 
   void addEducationHandler(event, emit) {
     educationList.add(event.education);
+    emit(ResumeSuccessS(
+        personalDetails: personalDetails,
+        educationList: educationList,
+        experienceList: experienceList,
+        projectList: projectList));
     printbloc();
   }
 
   void addExperienceHandler(event, emit) {
     experienceList.add(event.experience);
+    emit(ResumeSuccessS(
+        personalDetails: personalDetails,
+        educationList: educationList,
+        experienceList: experienceList,
+        projectList: projectList));
     printbloc();
   }
 
   void addProjectHandler(event, emit) {
-    projectsList.add(event.project);
+    projectList.add(event.project);
+    emit(ResumeSuccessS(
+        personalDetails: personalDetails,
+        educationList: educationList,
+        experienceList: experienceList,
+        projectList: projectList));
     printbloc();
   }
 
@@ -45,6 +65,6 @@ class ResumeBloc extends Bloc<ResumeEvent, ResumeState> {
     print(personalDetails);
     print(educationList.length);
     print(experienceList.length);
-    print(projectsList.length);
+    print(projectList.length);
   }
 }
