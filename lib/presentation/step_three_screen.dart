@@ -50,7 +50,8 @@ class StepThreeScreen extends StatelessWidget {
               CustomTextFormWidget(
                   hintText: 'I worked on...',
                   textEditingController: nameController,
-                  title: 'Descrition'),
+                  maxLines: 4,
+                  title: 'Description'),
               const SizedBox(height: 16),
               Row(
                 children: [

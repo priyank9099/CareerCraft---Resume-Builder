@@ -7,13 +7,11 @@ import 'package:resume_builder/presentation/widgets/white_custom_button.dart';
 class StepTwoScreen extends StatelessWidget {
   const StepTwoScreen({
     super.key,
-    required this.nameController,
   });
-
-  final TextEditingController nameController;
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController nameController = TextEditingController();
     return Scaffold(
       appBar: CustomAppBar.customAppBar(),
       body: SingleChildScrollView(
@@ -23,45 +21,42 @@ class StepTwoScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(12).copyWith(top: 16),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
                 children: [
-                  Column(
-                    children: [
-                      const Text(
-                        'STEP 1',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      const Text(
-                        'Personal',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xffFBB53B),
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      CustomTextFormWidget(
-                          hintText: 'John Doe',
-                          textEditingController: nameController,
-                          title: 'Full name'),
-                      CustomTextFormWidget(
-                          hintText: 'johndoe@email.com',
-                          textEditingController: nameController,
-                          title: 'Email address'),
-                      CustomTextFormWidget(
-                          hintText: '1234567896',
-                          textEditingController: nameController,
-                          title: 'Contact number'),
-                      const SizedBox(height: 16),
-                    ],
+                  const Text(
+                    'STEP 2',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
+                  const Text(
+                    'Education',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color(0xffFBB53B),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  CustomTextFormWidget(
+                      hintText: 'State University',
+                      textEditingController: nameController,
+                      title: 'College/University Name'),
+                  CustomTextFormWidget(
+                      hintText: 'Computer Science',
+                      textEditingController: nameController,
+                      title: 'Branch'),
+                  CustomTextFormWidget(
+                      hintText: 'July 2019',
+                      textEditingController: nameController,
+                      title: 'From'),
+                  CustomTextFormWidget(
+                      hintText: 'Aug 2023',
+                      textEditingController: nameController,
+                      title: 'Passing year'),
+                  const SizedBox(height: 16),
                   Row(
                     children: [
                       Expanded(
@@ -84,61 +79,6 @@ class StepTwoScreen extends StatelessWidget {
             )
           ],
         ),
-      ),
-    );
-  }
-}
-
-class StepFourWidget extends StatelessWidget {
-  const StepFourWidget({
-    super.key,
-    required this.nameController,
-  });
-
-  final TextEditingController nameController;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(12).copyWith(top: 16),
-      child: Column(
-        children: [
-          const Text(
-            'STEP 4',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-          const Text(
-            'Projects',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xffFBB53B),
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          const SizedBox(height: 12),
-          CustomTextFormWidget(
-              hintText: 'E-Commerce Application',
-              textEditingController: nameController,
-              title: 'title'),
-          CustomTextFormWidget(
-              hintText: 'features...',
-              textEditingController: nameController,
-              title: 'Description'),
-          CustomTextFormWidget(
-              hintText: 'July 2023',
-              textEditingController: nameController,
-              title: 'From'),
-          CustomTextFormWidget(
-              hintText: 'Aug 2023',
-              textEditingController: nameController,
-              title: 'Till'),
-          const SizedBox(height: 16),
-        ],
       ),
     );
   }
