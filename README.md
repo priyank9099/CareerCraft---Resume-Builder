@@ -24,33 +24,10 @@ Please star⭐ the repo if you like what you see😉.
 
 <img src="https://res.cloudinary.com/dthljz11q/image/upload/v1703020759/app%20screenshots/RESUME%20BUILDER/mpekru4i68iexuqwhfnm.png"> <img src="https://res.cloudinary.com/dthljz11q/image/upload/v1703020759/app%20screenshots/RESUME%20BUILDER/cktlsmeovdgnw3x5lwe3.png">
 
-## Setup
-
-- Clone this repository
-
-  ```bash
-  https://github.com/tejasbadone/resume_builder.git
-  ```
-
-- Migrate to root directory and install all the required dependencies by running
-
-  ```bash
-  flutter pub get
-  ```
-
-- Run project
-  ```bash
-   flutter run
-  ```
 
 ## Download
 
 Download apk - https://drive.google.com/file/d/1jaPYUFiuzJ5g_A7lwMsnkdGNFB0RIybW/view?usp=sharing
 
-## Contact
-
-- Tejas Badone <br> <br>
-  <a  href="https://www.linkedin.com/in/tejasbadone/" target="_blank"><img alt="LinkedIn" src="https://img.shields.io/badge/linkedin%20-%230077B5.svg?&style=for-the-badge&logo=linkedin&logoColor=white" /></a>
-  <a href="mailto:tejas.badone25@gmail.com"><img  alt="Gmail" src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
 
   feel free to contact me!
